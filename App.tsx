@@ -1,43 +1,30 @@
 import React from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
 
-// Interface para definir el tipo de datos del estudiante
-interface StudentData {
-  name: string;
-  role: string;
-  idNumber: string;
-  email: string;
-  avatarUrl: string;
-}
-
-// Datos de la tarjeta
-const studentInfo: StudentData = {
-  name: 'Juan Pérez',
-  role: 'Estudiante de Desarrollo Web',
-  idNumber: '2026-8942',
-  email: 'juan.perez@email.com',
-  avatarUrl: 'https://via.placeholder.com/100',
-};
-
-export default function App(): React.JSX.Element {
+export default function App() {
   return (
     <View style={styles.container}>
-      {/* Contenedor de la Tarjeta */}
       <View style={styles.card}>
+        {/* Foto de perfil */}
         <Image
-          source={{ uri: studentInfo.avatarUrl }}
           style={styles.avatar}
+          source={{ uri: 'https://via.placeholder.com/100' }} 
         />
 
+        {/* Datos del Estudiante */}
+        <Text style={styles.name}>Erick Solórzano</Text>
+        <Text style={styles.carrera}>Estudiante de Ingenieria</Text>
+
         <View style={styles.infoContainer}>
-          <Text style={styles.name}>{studentInfo.name}</Text>
-          <Text style={styles.role}>{studentInfo.role}</Text>
-          <Text style={styles.detail}>ID: {studentInfo.idNumber}</Text>
-          <Text style={styles.detail}>Correo: {studentInfo.email}</Text>
+          <Text style={styles.infoText}>Carnet: 0907-25-29532</Text>
+          <Text style={styles.infoText}>Correo: esolorzanoj@miumg.edu.gt</Text>
         </View>
+
+        {/* Botón interactivo */}
+        <TouchableOpacity style={styles.button} onPress={() => alert('¡Estudiante Activo!')}>
+          <Text style={styles.buttonText}>Ver Estado</Text>
+        </TouchableOpacity>
       </View>
-      <StatusBar style="auto" />
     </View>
   );
 }
@@ -51,43 +38,54 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   card: {
-    flexDirection: 'column',
-    alignItems: 'center',
     backgroundColor: '#ffffff',
     borderRadius: 16,
     padding: 24,
+    alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.1,
     shadowRadius: 8,
-    elevation: 4,
+    elevation: 5,
     width: '100%',
     maxWidth: 350,
   },
   avatar: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
+    width: 90,
+    height: 90,
+    borderRadius: 45,
     marginBottom: 16,
   },
-  infoContainer: {
-    alignItems: 'center',
-  },
   name: {
-    fontSize: 20,
+    fontSize: 22,
     fontWeight: 'bold',
     color: '#1a1a1a',
     marginBottom: 4,
   },
-  role: {
+  carrera: {
     fontSize: 14,
     color: '#666666',
-    fontWeight: '600',
-    marginBottom: 12,
+    marginBottom: 16,
   },
-  detail: {
-    fontSize: 12,
+  infoContainer: {
+    alignItems: 'center',
+    marginVertical: 10,
+  },
+  infoText: {
+    fontSize: 13,
     color: '#888888',
-    marginTop: 2,
+    marginVertical: 2,
+  },
+  button: {
+    marginTop: 16,
+    backgroundColor: '#0066cc',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 8,
+  },
+  buttonText: {
+    color: '#ffffff',
+    fontWeight: '600',
+    fontSize: 14,
   },
 });
